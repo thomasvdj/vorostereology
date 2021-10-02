@@ -1,7 +1,7 @@
 # vorostereology
 A Python package for computing Laguerre tessellations (aka Laguerre-Voronoi diagrams) and planar sections (cross sections) of these tessellations. In particular, centroidal Laguerre tessellations with a chosen cell volume distribution can be computed.
 
-While the pacakge is fully functional I intend to re-write some parts still, both for increasing performance as for better organizing the code structure. Documentation is currently limited to docstrings in _init_.py and the demos in the "examples" folder. The package uses source code of the C++ package Voro++, and the Python package pyvoro. The License accompanied with these software packages is located in the folder "voro++_pyvoro_license".
+While the pacakge is fully functional I intend to re-write some parts still, both for increasing performance as for better organizing the code structure. Documentation is currently limited to docstrings in _init_.py and the demos in the "examples" folder. The package uses source code of the C++ package Voro++, and the Python package pyvoro. The License accompanied with these software packages is LICENSE.txt.
 
 # Warning
 The package may still change in functionality and implementation, backwards compatibility is not yet guaranteed.
