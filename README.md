@@ -14,4 +14,4 @@ Option 1: pip install git+https://github.com/thomasvdj/vorostereology.git
 Option 2: Download and extract source code, cd into the folder and install via: pip install .
 
 # MacOS support
-For perfomance several functions are paralellized via OpenMP. This may complicate installation on MacOS since clang does not have OpenMP support. We refer to https://scikit-learn.org/stable/developers/advanced_installation.html which is another package which depends on OpenMP. There are two options given for enabling OpenMP on MacOS. Installation on Windows using MSVC or Linux via gcc should work withou issues.
+For perfomance several functions are paralellized via OpenMP. This may complicate installation on MacOS since clang does not have OpenMP support. We refer to https://scikit-learn.org/stable/developers/advanced_installation.html which is another package which depends on OpenMP. There are two options given for enabling OpenMP on MacOS. Installation on Windows using MSVC or Linux via gcc should work without issues.
