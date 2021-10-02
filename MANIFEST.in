@@ -1,0 +1,3 @@
+include LICENSE.txt
+recursive-include src *.cc *.hh
+recursive-include vorostereology *.py *.cpp *.h
