@@ -6,11 +6,9 @@ from setuptools import setup, Extension
 import sys
 
 
-compile_args = ['-std=c++11', '-O3', '-fopenmp']
-link_args = ['-fopenmp']
+compile_args = ['-std=c++11', '-O3']
 if "MSC" in sys.version:
-    compile_args = ["/std:c11", "/O2", '/openmp']
-    link_args = ['/openmp']
+    compile_args = ["/O2"]
 
 extensions = [
     Extension("vorostereology.voroplusplus",
@@ -18,7 +16,6 @@ extensions = [
                        "vorostereology/vpp.cpp",
                        "src/voro++.cc"],
               extra_compile_args=compile_args,
-              extra_link_args=link_args,
               include_dirs=["src"],
               language="c++",
               )
@@ -31,14 +28,9 @@ setup(
     author="Thomas van der Jagt",
     packages=["vorostereology", ],
     package_dir={"vorostereology": "vorostereology"},
-    install_requires=[
-    	'cython',
-    	'numpy',
-    	'scipy',
-    	'matplotlib',
-    ],
+    install_requires=['cython', 'numpy', 'scipy', 'matplotlib', ],
     ext_modules=extensions,
-    keywords=["geometry", "mathematics", "Voronoi"],
+    keywords=["geometry", "mathematics", "Voronoi", ],
     classifiers=[
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Physics",
