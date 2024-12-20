@@ -1,10 +1,8 @@
-# Author: Thomas van der Jagt
-# Demo: Compute Poisson-voronoi diagram, visualize diagram along with cross section
-
 import vorostereology as vs
 import numpy as np
 from matplotlib import pyplot as plt
 import mpl_toolkits.mplot3d as m3
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.collections import PolyCollection
 
 
@@ -12,29 +10,30 @@ from matplotlib.collections import PolyCollection
 
 n = 100  # number of generator points
 domain = [[0.0, 1.0], [0.0, 1.0], [0.0, 1.0]]  # unit cube
-np.random.seed(1)  # make results reproducible with a fixed random seed
-periodicity = [False, False, False]  # make the domain non-periodic in the x,y,z coordinates
+rng = np.random.default_rng()
 
 # initialize generator points and weights
-points = np.random.uniform(low=0, high=1.0, size=(n, 3))
+points = rng.uniform(size=(n, 3), low=0.0, high=1.0)
 weights = np.zeros(n)
 
 # ######################################### compute Laguerre diagram ##################################################
 
 # Generate a voronoi diagram
-cells = vs.compute_voronoi(points, domain, weights, periodicity)
+lag = vs.Laguerre3D(points, weights, domain, False)
+cells = lag.get_cells()
 
 # ########################################### Compute cross section ###################################################
 
 coeffs = np.array([0.0, -0.5, 1.0])
 offset = np.array([0.5, 0.5, 0.7])
-cross_section = vs.compute_cross_section(coeffs, offset, points, domain, weights, periodicity)
+cross_section = lag.compute_section(coeffs, offset)
 
 # ############################################## Visualize results ####################################################
 
 # Make a 3d plot of the voronoi diagram with the cross seciton
-fig = plt.figure(figsize=(5, 5))
-ax = plt.axes(projection='3d')
+fig = plt.figure(figsize=(4, 4))
+ax = Axes3D(fig, auto_add_to_figure=False)
+fig.add_axes(ax)
 
 for cell_idx, cell in enumerate(cells):
     for facet_idx, facet in enumerate(cell['faces']):
@@ -58,7 +57,8 @@ ax.set_axis_off()
 plt.show(block=False)
 
 # Make a 2d plot of the cross section
-fig2 = plt.figure(figsize=(5, 5))
+
+fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
 
 coll = PolyCollection(cross_section['2d'], facecolors="red", edgecolors='k')
